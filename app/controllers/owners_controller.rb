@@ -1,5 +1,7 @@
 class OwnersController < ApplicationController
 
+  before_action :authorize, except: [:new, :create]
+
   def index
     @owners = Owner.all
     count = cookies[:visit_count] || 1
@@ -16,10 +18,11 @@ class OwnersController < ApplicationController
 
     if owner.save 
       flash[:notice] = "Owner saved successfully!"
+      session[:owner_id] = owner.id
       redirect_to owner_path(owner)
     else
       flash[:error] = owner.errors.full_messages.join(", ")
-      redirect_to new_owner_path
+      redirect_to '/signup'
     end
 
   end
@@ -45,7 +48,7 @@ class OwnersController < ApplicationController
 
   private
   def owner_params
-    params.require(:owner).permit(:first_name, :last_name, :email, :phone)
+    params.require(:owner).permit(:first_name, :last_name, :email, :phone, :password, :password_confirmation)
   end
 
 end

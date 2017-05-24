@@ -1,14 +1,15 @@
 class Owner < ActiveRecord::Base
-  # TODO: add association ot pets
+
+  has_secure_password
+
   has_many :pets
-  has_many :appointments, through: :pets
-  # TODO: add association to appointments (through pets)
-  
-  # TODO: add validations
+  has_many :appointments, through: :pets  
 
   validates :first_name, presence: true, length: { minimum: 2, maximum: 50 }
 
   validates :last_name, presence: true, length: { minimum: 2, maximum: 50 }
+
+  # TODO: Validate password (Characters, uppercase, numbers, etc...)
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,

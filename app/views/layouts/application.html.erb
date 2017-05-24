@@ -13,8 +13,17 @@
   <title>RailsValidationsErrors</title>
 </head>
 <body>
+
+
+  <% if current_owner %>
+   Signed in as <%= current_owner.first_name %> | <%= link_to "Logout", '/logout' %>
+   <% else %>  
+   <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>  
+   <% end %> 
+
+
   <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: "alert alert-info" %>
+    <%= content_tag :div, msg, class: "alert danger-info" %>
   <% end %>
   <div class="container">
     <div class="row">

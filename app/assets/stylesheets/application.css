@@ -1,3 +1,11 @@
+.danger-info {
+	margin: 20px;
+    color: red;
+    background-color: rgba(225, 0, 0, 0.1);
+    border-color: darkred;
+
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +21,4 @@
  *= require_tree .
  *= require_self
  */
+
